@@ -22,7 +22,7 @@ require('./geocoder')(function(err, geocoderStream) {
     
     var geocoder = geocoderStream(function formatter(obj) {
       var addr = obj['ADDR']
-      console.log(addr)
+      console.log("ADDR:", addr)
       return addr
     })
     
@@ -37,6 +37,8 @@ require('./geocoder')(function(err, geocoderStream) {
     input.on('error', function(e) {
       console.log({'HTTPERR': e})
     })
+    
+    writeStream.pipe(require('stdout')("\nWRITESTREAM: "))
     
     writeStream.on('end', function() {
       console.log(JSON.stringify({
