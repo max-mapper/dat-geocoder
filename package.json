@@ -1,0 +1,28 @@
+{
+  "name": "dat-geocoder",
+  "version": "0.0.1",
+  "description": "geocoder transform for dat using carmen + custom data",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "if [ ! -f mbtiles/alameda-county-addr.mbtiles ]; then mkdir mbtiles; curl -fo mbtiles/alameda-county-addr.mbtiles http://mapbox-carmen.s3.amazonaws.com/other/dat-oakland-soft-story-buildings/alameda-county-addr.mbtiles; fi",
+    "start": "DEBUG=* node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxogden/dat-geocoder.git"
+  },
+  "author": "maxogden",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/maxogden/dat-geocoder/issues"
+  },
+  "homepage": "https://github.com/maxogden/dat-geocoder",
+  "dependencies": {
+    "binary-csv": "~0.1.7",
+    "geocoder": "~0.1.0",
+    "mbtiles": "~0.4.2",
+    "carmen": "maxogden/carmen#prebuilt-mapnik-dep",
+    "glob": "~3.2.8",
+    "through2": "~0.4.1"
+  }
+}
