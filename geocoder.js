@@ -33,7 +33,10 @@ GeocodeStream.prototype.write = function(obj, enc, next) {
   this.geocoder.geocode(address, {}, function(err, results) {
     if (err) self.stream.emit('error', err)
     var best = results.features[0]
-    if (best) obj.geojson = best
+    if (best) {
+      obj.longitude = best.geometry.coordinates[0]
+      obj.latitude = best.geometry.coordinates[1]
+    }
     self.stream.push(obj)
     next()
   })

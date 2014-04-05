@@ -6,7 +6,7 @@ var bcsv = require('binary-csv')
 require('./geocoder')(function(err, geocoderStream) {
   if (err) throw err
   
-  var dat = new Dat('./data', { port: port }, function ready(err) {
+  var dat = new Dat('./data', { port: port, writeBufferSize: 1024 * 512 }, function ready(err) {
     if (err) throw err
     setInterval(fetch, 60000 * 60 * 24) // fetch every 24 hours
     fetch()
