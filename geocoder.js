@@ -34,8 +34,7 @@ GeocodeStream.prototype.write = function(obj, enc, next) {
     if (err) self.stream.emit('error', err)
     var best = results.features[0]
     if (best) {
-      obj.longitude = best.geometry.coordinates[0]
-      obj.latitude = best.geometry.coordinates[1]
+      obj.geojson = best.geometry
     }
     self.stream.push(obj)
     next()
