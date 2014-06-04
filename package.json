@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "if [ ! -f mbtiles/alameda-county-addr.mbtiles ]; then mkdir mbtiles; curl -fo mbtiles/alameda-county-addr.mbtiles http://mapbox-carmen.s3.amazonaws.com/other/dat-oakland-soft-story-buildings/alameda-county-addr.mbtiles; fi",
-    "start": "DEBUG=* node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "binary-csv": "~0.1.7",
     "carmen": "maxogden/carmen#prebuilt-mapnik-dep",
-    "dat": "^2.10.1",
+    "dat": "maxogden/dat",
     "geocoder": "~0.1.0",
     "glob": "~3.2.8",
     "mbtiles": "~0.4.2",

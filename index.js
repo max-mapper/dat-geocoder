@@ -6,13 +6,16 @@ var bcsv = require('binary-csv')
 require('./geocoder')(function(err, geocoderStream) {
   if (err) throw err
   
-  var dat = new Dat('./data', { port: port, writeBufferSize: 1024 * 512 }, function ready(err) {
+  var dat = new Dat('./data', function ready(err) {
     if (err) throw err
-    setInterval(fetch, 60000 * 60 * 24) // fetch every 24 hours
-    fetch()
+    load()
+    
+    dat.listen(port, function(err) {
+      console.log('listening on', port)
+    })
   })
   
-  function fetch() {
+  function load() {
     console.log(JSON.stringify({
       "starting": new Date(),
       "message": "Geocoding CSV and loading into Dat"
@@ -37,8 +40,6 @@ require('./geocoder')(function(err, geocoderStream) {
     input.on('error', function(e) {
       console.log({'HTTPERR': e})
     })
-    
-    writeStream.pipe(require('stdout')("\nWRITESTREAM: "))
     
     writeStream.on('end', function() {
       console.log(JSON.stringify({
